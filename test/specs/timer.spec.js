@@ -6,6 +6,11 @@ describe('Timer', () => {
 
     beforeEach(() => {
         $item = document.createElement('ciasteczko');
+
+        const $resetButton = document.createElement('div');
+        $resetButton.id = 'resetBttn';
+        document.body.append($resetButton);
+        
         timer = new Timer();
     });
 
@@ -68,19 +73,19 @@ describe('Timer', () => {
     });
 
     describe('startTimer', () => {
-        it('should call "timeCounter"', () => {
+        it('should call "startCounter"', () => {
             const $breakTime = document.createElement('break');
             const $sessionTime = document.createElement('session');
             $breakTime.textContent = '1';
             $sessionTime.textContent = '1';
 
-            timer.timeCounter = jest.fn();
-            jest.spyOn(timer, 'timeCounter');
+            timer.startCounter = jest.fn();
+            jest.spyOn(timer, 'startCounter');
             timer.startTimer($breakTime, $sessionTime);
 
-            expect(timer.timeCounter).toHaveBeenCalled();
-            expect(timer.timeCounter).toHaveBeenCalledTimes(1);
-            expect(timer.timeCounter).toHaveBeenCalledWith(Timer.ONE_MINUTE_IN_MILLISECONDS, Timer.ONE_MINUTE_IN_MILLISECONDS);
+            expect(timer.startCounter).toHaveBeenCalled();
+            expect(timer.startCounter).toHaveBeenCalledTimes(1);
+            expect(timer.startCounter).toHaveBeenCalledWith(Timer.ONE_MINUTE_IN_MILLISECONDS, Timer.ONE_MINUTE_IN_MILLISECONDS);
         });
     });
 });
